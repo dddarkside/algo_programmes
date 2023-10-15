@@ -4,18 +4,26 @@ from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.image import Image
+from kivy.uix.anchorlayout import AnchorLayout
 
-class Screen_Main(Screen):
-    def __init__(self, name='main'):
-        super().__init__(name=name)
-        txt = Label(text = "hi")
-        btn = Button(text = "Начать")
+
+class Screen_Artem(Screen):
+    def __init__(self, name = 'Artem'):
+        super().__init__(name = name)
+        box = BoxLayout(orientation = 'vertical')
+        pic = Image(source = '1.jpg')
+        box.add_widget(pic)
+        
+        txt = Label(text = 'День добрый, люди молодые! Зовут меня Artemом и родом я из Moscowы. Будуюший предпринематель!) Fourth year на алгоритмике. ')
+        btn = Button(text = 'Начать', size_hint=(.5,1), alignment='center')
         btn.on_press = self.next
-        self.name_in = TextInput(multiline = False)
-        box = BoxLayout(orientation = "vertical")
+        self._in = TextInput(multiline = False)
+
+        
 
         box.add_widget(txt)
-        box.add_widget(self.name_in)
+        box.add_widget(self._in)
         box.add_widget(btn)
         self.add_widget(box)
 
@@ -24,33 +32,17 @@ class Screen_Main(Screen):
         name = self.name_in.text
 
         self.manager.transition.direction = 'left'
-        self.manager.current = 'Egor'
+        self.manager.current = '7'
 
 
-class Screen_Egor(Screen):
-    pass
-class Screen_Nikita(Screen):
-    pass
-class Screen_CDmitry(Screen):
-    pass
-class Screen_Maksim(Screen):
-    pass
-class Screen_Artem(Screen):
-    pass
-class Screen_EDmitry(Screen):
-    pass
+
 
 
 class Main(App):
     def build(self):
         sm = ScreenManager()
-        sm.add_widget(Screen_Main())
-        sm.add_widget(Screen_Egor())
-        sm.add_widget(Screen_Nikita())
-        sm.add_widget(Screen_CDmitry())
-        sm.add_widget(Screen_Maksim())
         sm.add_widget(Screen_Artem())
-        sm.add_widget(Screen_EDmitry())
+
 
         return sm
 
